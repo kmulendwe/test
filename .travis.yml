@@ -5,3 +5,12 @@ services:
 script:
   - docker build -t kmulendwe/node . 
   - docker images kmulendwe/node
+
+before_deploy:
+  - docker login -u kmulendwe -p funguafungua
+
+deploy:
+  provider: script
+  script: docker push kmulendwe/node
+  on:
+    branch: master    
